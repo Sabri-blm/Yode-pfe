@@ -1,0 +1,310 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YoDe</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../static/images/favicon.ico" />
+    <link rel="stylesheet" href="../static/style.css">
+
+</head>
+<body>
+
+    <!-- this is the purple part -->
+
+    <div id="first">
+
+        <div id="nav">
+            <div id="inner-nav">
+                <a id="logo" href="#first">YoDe</a>
+                <ul>
+                  <li id="crcle">
+                        <div id="arab" onclick="swipe()">
+                        <div id="circle"></div>
+                        </div>
+                    </li>
+                   <li><a class="ArabMenu" href="#third">LSA</a></li>
+                    <li><a class="ArabMenu" href="#seconde">Demo</a></li>
+                    <li><a class="ArabMenu" href="#questions">Question</a></li>
+                </ul>
+            
+            </div>
+        </div>
+
+
+        <div class="first-text">
+            <div class="img">
+                <img class="fadeImg" src="../static/images/laptop4.png" alt="img">
+            </div>
+
+            <h1 class="fade-up">YoDe</h1>
+            <h3 class="fade-up Arab1">Le premier site web de détection de la langue des signes arabe avec Yolov5</h3>
+            <a class="Arab1" href="#seconde">Testez-le</a>
+        </div>
+  
+    </div>
+
+    <!-- this is the black part -->
+   
+    <div id="seconde">
+
+        <div id="wrapper">
+            <h3 class="fade-up Arab2">Testez-le</h3>
+            <h2 class="fade-up Arab2" style="    margin-block-end: 2vh;">Sélectionnez une image et commencez la détection</h2>
+            <div class="line1"></div>
+        </div>
+
+        <form method="POST" action="{{ url_for('predict',formid=1) }}" enctype="multipart/form-data"> 
+            <div id="firstDiv">
+                <input type="file" accept="image/*" id="inputfile" name="file" onchange="loadFile(event)">
+                <label id="label1" class="Arab2" for="inputfile">Choisissez une image ...</label>
+                
+                <div id="result" style="text-align: center">
+                    <a href="{{ hreff }}" target="_blank"><img class="enlarge" id="img-result" src="{{ source }}" alt=""></a>
+                    <br>
+                    <a id="download" href="{{ hreff }}" download>{{ download_text }}</a>
+                </div>
+                <h2 class="Arab2" style="color: gray; font-size: 12px;">Choisissez le type de détection</h2>
+                <div class="wrapper2">
+                  <input type="radio" name="select" id="option-1" value="yolov5s" {{ check }}>
+                  <input type="radio" name="select" id="option-2" value="yolov5m" {{ check2 }}>
+                  <input type="radio" name="select" id="option-3" value="yolov5l" {{ check3 }}>
+                  <label for="option-1" class="option option-1">
+                      <div class="dot"></div>
+                      <span class="Arab2">Optimale</span>
+                  </label>
+                  <label for="option-2" class="option option-2">
+                      <div class="dot"></div>
+                      <span class="Arab2">Avancé</span>
+                  </label>
+                  <label for="option-3" class="option option-3">
+                      <div class="dot"></div>
+                      <span class="Arab2">Expert</span>
+                  </label>
+              </div>
+
+                <button class="Arab2" id="btn" type="submit">Soumettre</button>
+            </div>
+        </form>
+        <div id="seconde-midle">
+            <h2 class="fade-up Arab22" style="font-size: 38px;margin: 0; text-align: center;padding-bottom: 2vh;">Les types de detection</h2>
+            <div class="line2"></div>
+            <br>
+            <br>
+            <br>
+            <br>
+
+            <div id="inner">
+                <div class="innerClass">
+                    <h2 class="Arab22" style="text-align: center;font-size: 32px;">Optimale</h2>
+                    <hr>
+                    <ul>
+                        <li class="Arab22">Détection rapide ( environ 0.01par image )</li>
+                        <li class="Arab22">Précision moyenne</li>
+                    </ul>
+                </div>
+    
+                <div class="innerClass">
+                    <h2 class="Arab22" style="text-align: center;font-size: 32px;">Avancé</h2>
+                    <hr>
+                    <ul>
+                        <li class="Arab22">Détection normale (environ 0,015 par image)</li>
+                        <li class="Arab22">Précision élevé</li>
+                    </ul>
+                </div>
+    
+                <div class="innerClass">
+                    <h2 class="Arab22" style="text-align: center;font-size: 32px;">Expert</h2>
+                    <hr>
+                    <ul>
+                        <li class="Arab22">Détection lente (environ 0,03 par image)</li>
+                        <li class="Arab22">Précision maximale</li>
+                    </ul>
+                </div>
+    
+            </div>
+    
+            
+    
+        </div>
+
+        <div id="seconde-part">
+            <!-- <h3 class="fade-up Arab2" style="color: #a8a8a8;">Ou bien</h3> -->
+            <h2 class="fade-up Arab2" style="font-size: 38px;margin-top: 0;margin-block-end: 2vh;">Démarrer la détection en temps réel</h2>
+            <div class="line3"></div>
+    
+            <form method="POST" action="{{ url_for('predict',formid=3) }}" enctype="multipart/form-data">
+              <button class="Arab2" id="btn-2" type="submit">
+                <img src="../static/images/webcam-512_2.png" alt="webcam" id="webcam" width="100px" style="margin: auto;">
+                <br>
+                <br>
+                <br>
+                <span style="font-size: 20px;">Live</span>          
+              </button>
+            </form>
+    
+            <h2 class="Arab2" style="color: gray; font-size: 12px;">Cliquez sur "q" pour sortir du mode detection en temp réel</h2>
+        </div>
+
+
+    </div>
+
+    <!-- this is the white part -->
+
+    <div id="third">
+
+        <div id="leftText" class="thirdText" >
+            <div id="img2">
+                <img class="fadeImg2" src="../static/images/ArSL2.png" alt="img">
+            </div>
+            
+            <h1 class="Arab3 threeLeftFr left">Langue des signes arabe</h1>
+            <h3 class="Arab3 threeLeftFr left2">La langue des signes arabe (LSA) est la principale méthode de communication entre 
+                les personnes malentendantes ou sourdes et les membres de leur communauté 
+                qui interagissent avec elles au sein des communautés arabes. Il existe 
+                certainement d'autres formes de communication, cependant, ces méthodes 
+                peuvent ne pas prendre en charge l'interaction naturelle, où le destinataire 
+                du message de communication n'a pas à apprendre la langue des signes ou 
+                toute autre méthode de communication.</h3>
+        </div>
+
+        <div id="rightText" class="thirdText">
+            <div id="img3">
+                <img class="fadeImg2" src="../static/images/Frame 11.png" alt="img">
+            </div>
+            
+            <h1 class="Arab3 threeH1RightFR right">L'alphabet de LSA </h1>
+            <h3 class="Arab3 threeH3RightFr right2">La langue des signes arabe contient 28 lettres alphabétiques principales 
+                commençant par ''Alif'' et se terminant par ''Ya'', toutes représentées par 
+                un geste de la main </h3>
+
+                
+        </div>
+
+    </div>
+
+    <!-- this is the question's part -->
+<div id="qstfeed">
+    <div id="questions">
+
+        <h3 id="questions-h3" class="ArabQues">FAQ</h3>
+        <h2 id="questions-h2" class="ArabQues">Avez-vous des questions ?</h2>
+
+        <div class="question-container">
+            <div class="quest ltr">
+                <p onclick="onClick(this.id)" id="1" class="question ArabQues">
+                    Combien de versions différentes de la langue des signes arabe existent ?
+                    <i id="down1" class="fas fa-chevron-down"></i>
+                </p>
+                <div class="answer ArabQues">Contrairement à l'arabe parlé, 
+                    les langues des signes arabes (ArSL) ne sont pas diglossiques. 
+                    Cela signifie qu'il existe une version d'une langue des signes 
+                    arabe utilisée par une communauté, plutôt que deux versions. </div>
+            </div>
+        </div>
+        <div class="question-container">
+            <div class="quest ltr">
+                <p onclick="onClick(this.id)" id="2" class="question ArabQues">
+                    La langue des signes arabe utilise-t-elle plus que des gestes de la main ?
+                    <i id="down1" class="fas fa-chevron-down"></i>
+                </p>
+                <div class="answer ArabQues">En plus des « signes », la langue des signes arabe 
+                    comprend des expressions faciales, des gestes et un langage corporel 
+                    pour communiquer. La langue des signes utilise son propre système de 
+                    grammaire, qui implique des structures de phrases différentes de 
+                    l'arabe parlé. </div>
+            </div>
+        </div>
+        <div class="question-container">
+            <div class="quest ltr">
+                <p onclick="onClick(this.id)" id="3" class="question ArabQues">
+                    Quelle est la meilleure façon de communiquer avec une personne sourde si je ne connais pas la langue des signes ? ?
+                    <i id="down1" class="fas fa-chevron-down"></i>
+                </p>
+                <div class="answer ArabQues">Les personnes sourdes veulent aussi vraiment faire partie
+                     du monde des entendants. Ils veulent communiquer. Ainsi, ils le
+                     découvriront par tous les moyens nécessaires. Qu'il s'agisse de 
+                     taper sur un téléphone, d'écrire, de vous apprendre à signer les 
+                     bases absolues, juste pour faire passer le message. </div>
+            </div> 
+        </div>
+        <div class="question-container">
+            <div class="quest ltr">
+                <p onclick="onClick(this.id)" id="4" class="question ArabQues">
+                    Existe-t-il une langue des signes universelle ?
+                    <i id="down1" class="fas fa-chevron-down"></i>
+                </p>
+                <div class="answer ArabQues">Non, même pas près. En réalité, il existe autant de 
+                    langues des signes que de langues parlées. De la langue des signes 
+                    américaine ou britannique à la langue des signes arabe, chacune est 
+                    aussi similaire aux autres que le chinois l'est à l'anglais.
+                    <br>
+                    Comme toute langue, la langue des signes s'est établie au sein 
+                    de certaines communautés et a été influencée par les influences 
+                    régionales et culturelles qui entouraient ses locuteurs natifs.
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- this is the feed back part -->
+
+    <div id="feed-back">
+        <form id="all" action="https://formsubmit.co/amiranis99@gmail.com" method="POST" >
+            <h3 class="ArabFeed">Donnez-nous votre avis !</h3>
+            <div id="feed">
+                <div id="info">
+                    <label class="ArabFeed" for="y">Nom complet</label>
+                    <input class="ArabicFeedValue" type="text" name="Nom" placeholder="Entrez votre nom ...">
+                    <label class="ArabFeed" for="x">Adresse email</label>
+                    <input class="ArabicFeedValue" type="email" name="Email" style="margin-bottom: 0;" placeholder="Entrer votre @email ...">
+                
+                </div>
+                <div id="text">
+                    <label class="ArabFeed" for="Message">Votre message</label>
+                    <input class="ArabicFeedValue" type="text" name="Message" placeholder="Écrivez vos commentaires ...">
+                </div>
+            </div>
+            <input id="sub" type="submit">
+            <h4 style="color: {{ color }}; margin: 10px 0 0 0;">{{ text }}</h4>
+        </form>
+    </div>
+</div>
+    
+    <!-- this is the footer part -->
+
+    <footer>
+        <p>YoDe</p>
+        <div><a target="_blank" href="https://github.com/tchikyy/Yode-finalVersion">Github</a> <a target="_blank" href="https://colab.research.google.com/drive/1qPk_sMh2YWuRPb2Vhql6cSBoZH4ZWgFk#scrollTo=m3hIZmDa175z">Google Colab</a></div>
+    </footer>
+
+
+
+
+    <!-- Scripts -->
+
+    <!-- this Script is for showing the selected Image -->
+
+    <script>
+        var loadFile = function(event) {
+            var image = document.getElementById('img-result');
+            image.src = URL.createObjectURL(event.target.files[0]);
+        };
+    </script>
+
+    <!-- this Script is for the fade in effect -->
+
+    <script src="../static/app.js"></script>
+    <script src="https://kit.fontawesome.com/7bde2991a9.js" crossorigin="anonymous"></script>
+    
+    <!-- this script is for the auto scroll to the seconde/feed back part -->
+
+    {% if scrollToAnchor %}
+      <script>
+          document.addEventListener("DOMContentLoaded", function() {
+          document.location.hash = '#{{ scrollToAnchor }}';
+      });
+      </script>
+    {% endif %}
+</body>
+</html>
